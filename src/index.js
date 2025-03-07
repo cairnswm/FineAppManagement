@@ -23,7 +23,6 @@ root.render(
         onError={(message, error) => console.error(message, error)}
       > 
         <ApplicationProvider>
-          <ApplicationProvider>
             <SettingsProvider>
               <BrowserRouter>
                 <App />

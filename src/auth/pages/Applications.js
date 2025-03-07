@@ -12,7 +12,12 @@ const Applications = () => {
           <h2 className="text-center mb-4">Applications</h2>
           <ul className="list-group">
             {applications.map((app) => (
-              <li key={app.id} className="list-group-item">
+              <li 
+                key={app.id} 
+                className="list-group-item"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setActiveApplication(app)}
+              >
                 {app.name}
               </li>
             ))}

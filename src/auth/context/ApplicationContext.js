@@ -66,14 +66,18 @@ export const ApplicationProvider = ({ children }) => {
   };
 
   // Memoized value to avoid unnecessary re-renders
+  const [activeApplication, setActiveApplication] = useState(null);
+
   const value = useMemo(
     () => ({
       applications,
+      activeApplication,
+      setActiveApplication,
       addApplication,
       updateApplication,
       deleteApplication,
     }),
-    [applications]
+    [applications, activeApplication]
   );
 
   return (

@@ -18,7 +18,7 @@ const Sidebar = () => {
         <hr />
         <Nav.Link as={Link} to="/applications">Applications</Nav.Link>
         <hr />
-        <h6 className="text-muted">Data App</h6>
+        <h6 className="text-muted">{user?.activeApplication?.name || 'Data App'}</h6>
         <Nav.Link as={Link} to="/properties" style={{ marginLeft: '1rem' }}>Properties</Nav.Link>
         <Nav.Link as={Link} to="/secrets" style={{ marginLeft: '1rem' }}>Secrets</Nav.Link>
         <Nav.Link as={Link} to="/users" style={{ marginLeft: '1rem' }}>Users</Nav.Link>
