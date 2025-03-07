@@ -11,6 +11,7 @@ import HomePage from './auth/pages/HomePage';
 import Settings from './auth/pages/Settings';
 import Properties from './auth/pages/Properties';
 import Payment from './auth/pages/Payment';
+import Applications from './auth/pages/Applications';
 import ProtectedRoute from './auth/components/ProtectedRoute';
 import PublicRoute from './auth/components/PublicRoute';
 import AdminRoute from './auth/components/AdminRoute';
@@ -88,9 +89,17 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/applications"
+          element={
+            <ProtectedRoute>
+              <Applications />
+            </ProtectedRoute>
+          }
+        />
         </Routes>
       </div>
-      </div>
+    </div>
     </>
   );
 };
