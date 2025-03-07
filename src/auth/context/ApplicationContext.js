@@ -81,20 +81,24 @@ export const ApplicationProvider = ({ children }) => {
   useEffect(() => {
     if (activeApplication) {
       setApplicationProperties([
-        { id: 1, name: "Property 1", value: "Value 1" },
-        { id: 2, name: "Property 2", value: "Value 2" },
+        { id: 1, name: "Database URL", value: "https://db.example.com" },
+        { id: 2, name: "API Key", value: "12345-abcde" },
+        { id: 3, name: "Max Connections", value: "100" },
       ]);
       setApplicationSecrets([
-        { id: 1, name: "Secret 1", value: "••••••••" },
-        { id: 2, name: "Secret 2", value: "••••••••" },
+        { id: 1, name: "JWT Secret", value: "••••••••••••••••••••" },
+        { id: 2, name: "OAuth Client Secret", value: "••••••••••••••••••••" },
+        { id: 3, name: "Encryption Key", value: "••••••••••••••••••••" },
       ]);
       setApplicationSettings([
-        { id: 1, name: "Setting 1", value: "Enabled" },
-        { id: 2, name: "Setting 2", value: "Disabled" },
+        { id: 1, name: "Feature Toggle A", value: "Enabled" },
+        { id: 2, name: "Feature Toggle B", value: "Disabled" },
+        { id: 3, name: "Maintenance Mode", value: "Off" },
       ]);
       setApplicationUsers([
-        { id: 1, name: "User 1", email: "user1@example.com", role: "Admin" },
-        { id: 2, name: "User 2", email: "user2@example.com", role: "Editor" },
+        { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com", role: "Admin" },
+        { id: 2, name: "Bob Smith", email: "bob.smith@example.com", role: "Editor" },
+        { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", role: "Viewer" },
       ]);
     } else {
       setApplicationProperties([]);
