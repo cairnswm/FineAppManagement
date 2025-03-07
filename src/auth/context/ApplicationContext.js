@@ -71,11 +71,36 @@ export const ApplicationProvider = ({ children }) => {
   // Memoized value to avoid unnecessary re-renders
   const [activeApplication, setActiveApplication] = useState(null);
 
-  // Mock data for application-specific properties, secrets, settings, and users
-  const [applicationProperties, setApplicationProperties] = useState([]);
-  const [applicationSecrets, setApplicationSecrets] = useState([]);
-  const [applicationSettings, setApplicationSettings] = useState([]);
-  const [applicationUsers, setApplicationUsers] = useState([]);
+  // Function to set active application and include mock data
+  const enhancedSetActiveApplication = (application) => {
+    if (application) {
+      setActiveApplication({
+        ...application,
+        properties: [
+          { id: 1, name: "Database URL", value: "https://db.example.com" },
+          { id: 2, name: "API Key", value: "12345-abcde" },
+          { id: 3, name: "Max Connections", value: "100" },
+        ],
+        secrets: [
+          { id: 1, name: "JWT Secret", value: "••••••••••••••••••••" },
+          { id: 2, name: "OAuth Client Secret", value: "••••••••••••••••••••" },
+          { id: 3, name: "Encryption Key", value: "••••••••••••••••••••" },
+        ],
+        settings: [
+          { id: 1, name: "Feature Toggle A", value: "Enabled" },
+          { id: 2, name: "Feature Toggle B", value: "Disabled" },
+          { id: 3, name: "Maintenance Mode", value: "Off" },
+        ],
+        users: [
+          { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com", role: "Admin" },
+          { id: 2, name: "Bob Smith", email: "bob.smith@example.com", role: "Editor" },
+          { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", role: "Viewer" },
+        ],
+      });
+    } else {
+      setActiveApplication(null);
+    }
+  };
 
   // Update mock data when active application changes
   useEffect(() => {
@@ -101,10 +126,7 @@ export const ApplicationProvider = ({ children }) => {
         { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", role: "Viewer" },
       ]);
     } else {
-      setApplicationProperties([]);
-      setApplicationSecrets([]);
-      setApplicationSettings([]);
-      setApplicationUsers([]);
+      setActiveApplication(null);
     }
   }, [activeApplication]);
 
@@ -112,7 +134,7 @@ export const ApplicationProvider = ({ children }) => {
     () => ({
       applications,
       activeApplication,
-      setActiveApplication,
+      setActiveApplication: enhancedSetActiveApplication,
       addApplication,
       updateApplication,
       deleteApplication,
