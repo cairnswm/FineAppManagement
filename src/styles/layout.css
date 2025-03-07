@@ -1,0 +1,35 @@
+/* src/styles/layout.css */
+
+/* General layout styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: #f8f9fa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Main content styles */
+.main-content {
+  margin-left: 250px;
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+}

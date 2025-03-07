@@ -19,9 +19,9 @@ const LandingPage = () => {
     <Container className="py-5">
       <Row className="justify-content-center text-center">
         <Col md={8} lg={6}>
-          <h1 className="display-4 mb-4">Welcome to Our Platform</h1>
+          <h1 className="display-4 mb-4">Welcome to App Management</h1>
           <p className="lead mb-4">
-            Join our community today and experience the best features we have to offer.
+            Manage your applications efficiently and effectively with our comprehensive tools.
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <Button 

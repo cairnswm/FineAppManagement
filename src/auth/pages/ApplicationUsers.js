@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from 'react';
+import { Container, Card, Table } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
+import { useApplication } from '../context/ApplicationContext';
+
+const ApplicationUsers = () => {
+  const { activeApplication, applications } = useApplication();
+  const [users, setUsers] = useState(activeApplication?.users || []);
+
+  useEffect(() => {
+    if (activeApplication) {
+      setUsers(activeApplication.users || []);
+    }
+  }, [activeApplication]);
+
+  if (!activeApplication) {
+    return (
+      <Container className="py-5">
+        <Card>
+          <Card.Body>
+            <h2 className="text-center">No Application Selected</h2>
+            <p className="text-center">
+              Please select an application from the sidebar to view its users.
+            </p>
+          </Card.Body>
+        </Card>
+      </Container>
+    );
+  }
+
+  return (
+    <Container className="py-5">
+      <Card>
+        <Card.Body>
+          <h2 className="text-center mb-4">{activeApplication.name} Users</h2>
+          {users.length > 0 ? (
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.role}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <p className="text-center">No users available for this application.</p>
+          )}
+        </Card.Body>
+      </Card>
+    </Container>
+  );
+};
+
+export default ApplicationUsers;

@@ -2,12 +2,14 @@ import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTenant } from '../hooks/useTenant';
 import { useAdmin } from '../hooks/useAdmin';
 import { PersonCircle } from 'react-bootstrap-icons';
 
 const Navigation = () => {
   const { user, logout } = useAuth();
   const isAdmin = useAdmin();
+  const { tenant } = useTenant();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -23,7 +25,7 @@ const Navigation = () => {
           to={user ? "/home" : "/"} 
           style={{ cursor: 'pointer' }}
         >
-          Auth System
+          App Management ({tenant})
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
