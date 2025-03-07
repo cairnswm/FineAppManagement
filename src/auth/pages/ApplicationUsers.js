@@ -11,7 +11,7 @@ const ApplicationUsers = () => {
     setUsers(applicationUsers || []);
   }, [applicationUsers]);
 
-  if (!application) {
+  if (!activeApplication) {
     return (
       <Container className="py-5">
         <Card>
