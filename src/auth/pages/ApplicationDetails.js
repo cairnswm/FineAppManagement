@@ -14,25 +14,9 @@ const ApplicationDetails = () => {
 
   useEffect(() => {
     if (activeApplication) {
-      fetch(
-        `${process.env.REACT_APP_TENANT_API}api.php/application/${activeApplication.uuid}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            APP_ID: activeApplication.uuid,
-            token: token,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setApplicationDetails(data);
-        })
-        .catch((err) => {
-          console.error('Error fetching application details:', err);
-        });
+      setApplicationDetails(activeApplication);
     }
-  }, [activeApplication, token]);
+  }, [activeApplication]);
 
   if (!activeApplication) {
     return (
