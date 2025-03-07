@@ -69,7 +69,7 @@ export const ApplicationProvider = ({ children }) => {
   const [activeApplication, setActiveApplication] = useState(null);
 
   useEffect(()=>{
-    console.log("ActiveApplication", activeApplication.name)
+    console.log("ActiveApplication", activeApplication?.name)
   }, [activeApplication])
 
   const value = useMemo(
