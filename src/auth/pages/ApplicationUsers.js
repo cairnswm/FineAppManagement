@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
-import { useApplicationUser } from '../context/ApplicationContext';
+import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { application, applicationUsers } = useApplication();
+  const { activeApplication, applicationUsers } = useApplication();
   const [users, setUsers] = useState(applicationUsers || []);
 
   useEffect(() => {
     setUsers(applicationUsers || []);
   }, [applicationUsers]);
 
-  if (!activeApplication) {
+  if (!application) {
     return (
       <Container className="py-5">
         <Card>
