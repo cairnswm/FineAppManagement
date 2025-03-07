@@ -4,13 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSettings = () => {
-  const { activeApplication, settings } = useApplication();
+  const { activeApplication, applicationSettings } = useApplication();
 
   useEffect(() => {
     if (activeApplication) {
-      setSettings(activeApplication.settings || []);
+      setSettings(applicationSettings || []);
     }
-  }, [activeApplication]);
+  }, [activeApplication, applicationSettings]);
 
   if (!activeApplication) {
     return (
