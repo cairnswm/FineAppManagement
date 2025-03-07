@@ -110,7 +110,7 @@ export const ApplicationProvider = ({ children }) => {
     () => ({
       applications,
       activeApplication,
-      setActiveApplication: enhancedSetActiveApplication,
+      setActiveApplication,
       addApplication,
       updateApplication,
       deleteApplication,
