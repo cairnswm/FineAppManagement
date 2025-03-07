@@ -21,11 +21,13 @@ root.render(
         googleClientId="YOUR_GOOGLE_CLIENT_ID"
         onError={(message, error) => console.error(message, error)}
       > 
-        <SettingsProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </SettingsProvider>
+        <ApplicationProvider>
+          <SettingsProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </SettingsProvider>
+        </ApplicationProvider>
       </AuthenticationProvider>
     </TenantProvider>
   </React.StrictMode>
