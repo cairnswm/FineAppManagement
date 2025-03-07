@@ -71,9 +71,7 @@ export const ApplicationProvider = ({ children }) => {
   // Memoized value to avoid unnecessary re-renders
   const [activeApplication, setActiveApplication] = useState(null);
 
-  useEffect(()=>{
-    console.log("ActiveApplication", activeApplication?.name)
-  }, [activeApplication])
+  // Removed unnecessary useEffect for logging activeApplication
 
   const value = useMemo(
     () => ({
