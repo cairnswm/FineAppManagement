@@ -17,8 +17,10 @@ import AdminRoute from './auth/components/AdminRoute';
 const App = () => {
   return (
     <>
-      <Navigation />
-      <Routes>
+      <Sidebar />
+      <div style={{ marginLeft: '250px' }}>
+        <Navigation />
+        <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/login"
@@ -84,7 +86,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-      </Routes>
+        </Routes>
+      </div>
     </>
   );
 };
