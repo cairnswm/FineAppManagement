@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
-import { useApplication } from '../context/ApplicationContext';
+import { useApplicationUser } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { activeApplication, applicationUsers } = useApplication();
+  const { application, applicationUsers } = useApplication();
   const [users, setUsers] = useState(applicationUsers || []);
 
   useEffect(() => {

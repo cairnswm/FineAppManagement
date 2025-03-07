@@ -3,9 +3,9 @@ import { Container, Card, Table } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationProperties = () => {
-  const { applicationProperties } = useApplication();
+  const { activeApplication, applicationProperties } = useApplication();
 
-  if (applicationProperties.length === 0) {
+  if (!activeApplication) {
     return (
       <Container className="py-5">
         <Card>
