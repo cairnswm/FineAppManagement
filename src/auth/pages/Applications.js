@@ -3,7 +3,7 @@ import { Container, Table, Card } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const Applications = () => {
-  const { applications } = useApplication();
+  const { applications, setActiveApplication } = useApplication();
 
   return (
     <Container className="py-5">
