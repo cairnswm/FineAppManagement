@@ -23,7 +23,7 @@ const Navigation = () => {
           to={user ? "/home" : "/"} 
           style={{ cursor: 'pointer' }}
         >
-          Auth System
+          App Management
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
