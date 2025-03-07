@@ -13,17 +13,18 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider = ({ children }) => {
+  const REACT_APP_SETTINGS_API = "https://cairnsgames.co.za/php/settings/api.php/";
   const [settings, setSettings] = useState([]);
   const { tenant } = useTenant();
   const { user } = useAuth();
 
-  if (!process.env.REACT_APP_SETTINGS_API) {
+  if (!REACT_APP_SETTINGS_API) {
     throw new Error("SettingsProvider: REACT_APP_SETTINGS_API environment variable is required");
   }
 
   useEffect(() => {
     if (user?.id) {
-      fetch(`${process.env.REACT_APP_SETTINGS_API}/mysettings/${user.id}`,
+      fetch(`${REACT_APP_SETTINGS_API}/mysettings/${user.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json", APP_ID: tenant },
