@@ -5,6 +5,7 @@ import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSettings = () => {
   const { activeApplication, applicationSettings } = useApplication();
+  const [settings, setSettings] = useState([]);
 
   useEffect(() => {
     if (activeApplication) {
