@@ -5,6 +5,7 @@ import App from "./App";
 import { AuthenticationProvider } from "./auth/context/AuthContext";
 import { TenantProvider } from "./auth/context/TenantContext";
 import { SettingsProvider } from "./auth/context/SettingsContext";
+import { ApplicationProvider } from "./auth/context/ApplicationContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const container = document.getElementById("root");
@@ -22,11 +23,13 @@ root.render(
         onError={(message, error) => console.error(message, error)}
       > 
         <ApplicationProvider>
-          <SettingsProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </SettingsProvider>
+          <ApplicationProvider>
+            <SettingsProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </SettingsProvider>
+          </ApplicationProvider>
         </ApplicationProvider>
       </AuthenticationProvider>
     </TenantProvider>

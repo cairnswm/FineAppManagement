@@ -14,9 +14,27 @@ export const useApplication = () => {
 
 // Mock data based on a hypothetical database schema
 const mockApplications = [
-  { id: 1, name: "Application A", status: "Active", owner: "User 1" },
-  { id: 2, name: "Application B", status: "Inactive", owner: "User 2" },
-  { id: 3, name: "Application C", status: "Pending", owner: "User 3" },
+  {
+    uuid: "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    name: "Application A",
+    description: "This is the first application.",
+    owner: "User 1",
+    date_created: "2023-01-01",
+  },
+  {
+    uuid: "b2c3d4e5-f6g7-8h9i-0j1k-l2m3n4o5p6q7",
+    name: "Application B",
+    description: "This is the second application.",
+    owner: "User 2",
+    date_created: "2023-02-01",
+  },
+  {
+    uuid: "c3d4e5f6-g7h8-9i0j-1k2l-m3n4o5p6q7r8",
+    name: "Application C",
+    description: "This is the third application.",
+    owner: "User 3",
+    date_created: "2023-03-01",
+  },
 ];
 
 // ApplicationProvider component
