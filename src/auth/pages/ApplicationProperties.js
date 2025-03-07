@@ -3,7 +3,7 @@ import { Container, Card, Table } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationProperties = () => {
-  const { activeApplication } = useApplication();
+  const { activeApplication, applicationProperties } = useApplication();
 
   if (!activeApplication) {
     return (
@@ -20,7 +20,7 @@ const ApplicationProperties = () => {
     );
   }
 
-  const properties = activeApplication.properties || [];
+  const properties = applicationProperties;
 
   return (
     <Container className="py-5">

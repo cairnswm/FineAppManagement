@@ -4,14 +4,12 @@ import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { activeApplication, applications } = useApplication();
-  const [users, setUsers] = useState(activeApplication?.users || []);
+  const { activeApplication, applicationUsers } = useApplication();
+  const [users, setUsers] = useState(applicationUsers || []);
 
   useEffect(() => {
-    if (activeApplication) {
-      setUsers(activeApplication.users || []);
-    }
-  }, [activeApplication]);
+    setUsers(applicationUsers || []);
+  }, [applicationUsers]);
 
   if (!activeApplication) {
     return (
