@@ -3,14 +3,9 @@ import { Container, Card, Table } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSecrets = () => {
-  const { activeApplication } = useApplication();
-  const [secrets, setSecrets] = useState([]);
+  const { activeApplication, applicationSecrets } = useApplication();
 
-  useEffect(() => {
-    if (activeApplication) {
-      setSecrets(activeApplication.secrets || []);
-    }
-  }, [activeApplication]);
+  const secrets = applicationSecrets || [];
 
   if (!activeApplication) {
     return (
