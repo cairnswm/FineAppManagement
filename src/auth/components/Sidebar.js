@@ -23,9 +23,11 @@ const Sidebar = () => {
         {activeApplication && (<>
         <hr />
         <h6 className="text-muted">{activeApplication?.name || 'Data App'}</h6>
+        <Nav.Link as={Link} to="/details" style={{ marginLeft: '1rem' }}>Details</Nav.Link>
         <Nav.Link as={Link} to="/properties" style={{ marginLeft: '1rem' }}>Properties</Nav.Link>
         <Nav.Link as={Link} to="/secrets" style={{ marginLeft: '1rem' }}>Secrets</Nav.Link>
-        <Nav.Link as={Link} to="/users" style={{ marginLeft: '1rem' }}>Users</Nav.Link>        
+        <Nav.Link as={Link} to="/settings" style={{ marginLeft: '1rem' }}>Settings</Nav.Link>
+        <Nav.Link as={Link} to="/users" style={{ marginLeft: '1rem' }}>Users</Nav.Link>
         </>)}
       </Nav>
     </div>
