@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useTenant } from '../context/TenantContext';
+import { useTenant } from '../hooks/useTenant';
 import { useAdmin } from '../hooks/useAdmin';
 import { PersonCircle } from 'react-bootstrap-icons';
 
