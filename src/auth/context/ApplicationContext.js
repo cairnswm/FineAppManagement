@@ -71,7 +71,38 @@ export const ApplicationProvider = ({ children }) => {
   // Memoized value to avoid unnecessary re-renders
   const [activeApplication, setActiveApplication] = useState(null);
 
-  // Removed unnecessary useEffect for logging activeApplication
+  // Mock data for application-specific properties, secrets, settings, and users
+  const [applicationProperties, setApplicationProperties] = useState([]);
+  const [applicationSecrets, setApplicationSecrets] = useState([]);
+  const [applicationSettings, setApplicationSettings] = useState([]);
+  const [applicationUsers, setApplicationUsers] = useState([]);
+
+  // Update mock data when active application changes
+  useEffect(() => {
+    if (activeApplication) {
+      setApplicationProperties([
+        { id: 1, name: "Property 1", value: "Value 1" },
+        { id: 2, name: "Property 2", value: "Value 2" },
+      ]);
+      setApplicationSecrets([
+        { id: 1, name: "Secret 1", value: "••••••••" },
+        { id: 2, name: "Secret 2", value: "••••••••" },
+      ]);
+      setApplicationSettings([
+        { id: 1, name: "Setting 1", value: "Enabled" },
+        { id: 2, name: "Setting 2", value: "Disabled" },
+      ]);
+      setApplicationUsers([
+        { id: 1, name: "User 1", email: "user1@example.com", role: "Admin" },
+        { id: 2, name: "User 2", email: "user2@example.com", role: "Editor" },
+      ]);
+    } else {
+      setApplicationProperties([]);
+      setApplicationSecrets([]);
+      setApplicationSettings([]);
+      setApplicationUsers([]);
+    }
+  }, [activeApplication]);
 
   const value = useMemo(
     () => ({
@@ -81,8 +112,19 @@ export const ApplicationProvider = ({ children }) => {
       addApplication,
       updateApplication,
       deleteApplication,
+      applicationProperties,
+      applicationSecrets,
+      applicationSettings,
+      applicationUsers,
     }),
-    [applications, activeApplication]
+    [
+      applications,
+      activeApplication,
+      applicationProperties,
+      applicationSecrets,
+      applicationSettings,
+      applicationUsers,
+    ]
   );
 
   return (

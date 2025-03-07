@@ -1,34 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
-import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationProperties = () => {
   const { activeApplication } = useApplication();
-  const { token } = useAuth();
-  const [properties, setProperties] = useState([]);
-
-  useEffect(() => {
-    if (activeApplication) {
-      fetch(
-        `${process.env.REACT_APP_TENANT_API}api.php/application/${activeApplication.uuid}/properties`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            APP_ID: activeApplication.uuid,
-            token: token,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setProperties(data);
-        })
-        .catch((err) => {
-          console.error('Error fetching application properties:', err);
-        });
-    }
-  }, [activeApplication, token]);
 
   if (!activeApplication) {
     return (
@@ -44,6 +19,8 @@ const ApplicationProperties = () => {
       </Container>
     );
   }
+
+  const properties = activeApplication.properties || [];
 
   return (
     <Container className="py-5">

@@ -4,31 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSettings = () => {
-  const { activeApplication } = useApplication();
-  const { token } = useAuth();
-  const [settings, setSettings] = useState([]);
+  const { activeApplication, settings } = useApplication();
 
   useEffect(() => {
     if (activeApplication) {
-      fetch(
-        `${process.env.REACT_APP_TENANT_API}api.php/application/${activeApplication.uuid}/settings`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            APP_ID: activeApplication.uuid,
-            token: token,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setSettings(data);
-        })
-        .catch((err) => {
-          console.error('Error fetching application settings:', err);
-        });
+      setSettings(activeApplication.settings || []);
     }
-  }, [activeApplication, token]);
+  }, [activeApplication]);
 
   if (!activeApplication) {
     return (

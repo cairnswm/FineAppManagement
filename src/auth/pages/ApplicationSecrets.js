@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
-import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSecrets = () => {
   const { activeApplication } = useApplication();
-  const { token } = useAuth();
   const [secrets, setSecrets] = useState([]);
 
   useEffect(() => {
     if (activeApplication) {
-      fetch(
-        `${process.env.REACT_APP_TENANT_API}api.php/application/${activeApplication.uuid}/secrets`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            APP_ID: activeApplication.uuid,
-            token: token,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setSecrets(data);
-        })
-        .catch((err) => {
-          console.error('Error fetching application secrets:', err);
-        });
+      setSecrets(activeApplication.secrets || []);
     }
-  }, [activeApplication, token]);
+  }, [activeApplication]);
 
   if (!activeApplication) {
     return (
@@ -59,8 +41,8 @@ const ApplicationSecrets = () => {
                 </tr>
               </thead>
               <tbody>
-                {secrets.map((secret) => (
-                  <tr key={secret.id}>
+                {secrets.map((secret, index) => (
+                  <tr key={index}>
                     <td>{secret.name}</td>
                     <td>{secret.value}</td>
                   </tr>

@@ -4,31 +4,14 @@ import { useAuth } from '../context/AuthContext';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { activeApplication } = useApplication();
-  const { token } = useAuth();
-  const [users, setUsers] = useState([]);
+  const { activeApplication, applications } = useApplication();
+  const [users, setUsers] = useState(activeApplication?.users || []);
 
   useEffect(() => {
     if (activeApplication) {
-      fetch(
-        `${process.env.REACT_APP_TENANT_API}api.php/application/${activeApplication.uuid}/users`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            APP_ID: activeApplication.uuid,
-            token: token,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setUsers(data);
-        })
-        .catch((err) => {
-          console.error('Error fetching application users:', err);
-        });
+      setUsers(activeApplication.users || []);
     }
-  }, [activeApplication, token]);
+  }, [activeApplication]);
 
   if (!activeApplication) {
     return (
