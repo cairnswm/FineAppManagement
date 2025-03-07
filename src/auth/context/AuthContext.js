@@ -16,7 +16,6 @@ import useEventing from '../hooks/useEventing';
 const AuthenticationContext = createContext(null);
 
 export const useAuth = () => {
-  const REACT_APP_AUTH_API = "https://cairnsgames.co.za/php/auth/";
   const context = useContext(AuthenticationContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthenticationProvider');
@@ -25,6 +24,7 @@ export const useAuth = () => {
 };
 
 const AuthenticationProvider = (props) => {
+  const REACT_APP_AUTH_API = "https://cairnsgames.co.za/php/auth/";
   const { children, googleClientId, onError } = props;
   const [token, settoken] = useState();
   const [googleAccessToken, setgoogleAccessToken] = useState();
