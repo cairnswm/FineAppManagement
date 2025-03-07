@@ -13,14 +13,14 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <TenantProvider
-      applicationId="43a32de6-e392-11ef-a1e5-1a220d8ac2c9"
+      applicationId="e2f7078a-fb4f-11ef-b3d0-1a220d8ac2c9"
       config={{}}
       onError={(message, error) => console.error(message, error)}
     >
       <AuthenticationProvider
         googleClientId="YOUR_GOOGLE_CLIENT_ID"
         onError={(message, error) => console.error(message, error)}
-      >
+      > 
         <SettingsProvider>
           <BrowserRouter>
             <App />
