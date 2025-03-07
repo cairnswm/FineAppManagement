@@ -18,9 +18,10 @@ import AdminRoute from './auth/components/AdminRoute';
 const App = () => {
   return (
     <>
+      <Navigation />
+      <div>
       <Sidebar />
       <div style={{ marginLeft: '250px' }}>
-        <Navigation />
         <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
@@ -88,6 +89,7 @@ const App = () => {
           }
         />
         </Routes>
+      </div>
       </div>
     </>
   );
