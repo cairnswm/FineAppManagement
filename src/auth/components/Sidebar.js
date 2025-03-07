@@ -3,10 +3,12 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useAdmin } from '../hooks/useAdmin';
+import { useApplication } from '../context/ApplicationContext';
 
 const Sidebar = () => {
   const { user } = useAuth();
   const isAdmin = useAdmin();
+  const { activeApplication } = useApplication();
 
   return (
     <div style={{ width: '250px', height: '100vh', backgroundColor: '#f8f9fa', padding: '1rem', position: 'fixed' }}>
@@ -18,7 +20,7 @@ const Sidebar = () => {
         <hr />
         <Nav.Link as={Link} to="/applications">Applications</Nav.Link>
         <hr />
-        <h6 className="text-muted">{user?.activeApplication?.name || 'Data App'}</h6>
+        <h6 className="text-muted">{activeApplication?.name || 'Data App'}</h6>
         <Nav.Link as={Link} to="/properties" style={{ marginLeft: '1rem' }}>Properties</Nav.Link>
         <Nav.Link as={Link} to="/secrets" style={{ marginLeft: '1rem' }}>Secrets</Nav.Link>
         <Nav.Link as={Link} to="/users" style={{ marginLeft: '1rem' }}>Users</Nav.Link>
