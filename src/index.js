@@ -29,7 +29,6 @@ root.render(
               </BrowserRouter>
             </SettingsProvider>
           </ApplicationProvider>
-        </ApplicationProvider>
       </AuthenticationProvider>
     </TenantProvider>
   </React.StrictMode>
