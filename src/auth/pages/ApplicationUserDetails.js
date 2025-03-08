@@ -3,9 +3,9 @@ import { Container, Card, Tabs, Tab } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUserDetails = () => {
-  const { activeApplication, activeUser, setActiveUser } = useApplication();
+  const { activeApplication, activeUser, setActiveUser, userProperties, userSettingOverrides } = useApplication();
   const [activeTab, setActiveTab] = useState('details');
-
+  
   if (!activeApplication || !activeUser) {
     return (
       <Container className="py-5">
@@ -36,7 +36,7 @@ const ApplicationUserDetails = () => {
     <div>
       <h5>Properties:</h5>
       <ul>
-        {userProperties.map((property) => (
+        {userProperties?.map((property) => (
           <li key={property.id}>
             <strong>{property.name}:</strong> {property.value}
           </li>
@@ -49,7 +49,7 @@ const ApplicationUserDetails = () => {
     <div>
       <h5>Settings Overrides:</h5>
       <ul>
-        {userSettingOverrides.map((setting) => (
+        {userSettingOverrides?.map((setting) => (
           <li key={setting.id}>
             <strong>{setting.name}:</strong> {setting.value}
           </li>
