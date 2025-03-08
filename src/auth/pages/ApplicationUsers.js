@@ -49,6 +49,7 @@ const ApplicationUsers = () => {
                         onClick={(e) => {
                           e.preventDefault();
                           setActiveUser(user);
+                          navigate('/application/user-details');
                         }}
                       >
                         {user.name}

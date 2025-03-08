@@ -3,17 +3,17 @@ import { Container, Card, Tabs, Tab } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUserDetails = () => {
-  const { activeApplication, applicationUsers } = useApplication();
+  const { activeApplication, activeUser, setActiveUser } = useApplication();
   const [activeTab, setActiveTab] = useState('details');
 
-  if (!activeApplication) {
+  if (!activeApplication || !activeUser) {
     return (
       <Container className="py-5">
         <Card>
           <Card.Body>
-            <h2 className="text-center">No Application Selected</h2>
+            <h2 className="text-center">No User Selected</h2>
             <p className="text-center">
-              Please select an application from the sidebar to view its user details.
+              Please select a user from the application users list to view their details.
             </p>
           </Card.Body>
         </Card>
@@ -23,38 +23,26 @@ const ApplicationUserDetails = () => {
 
   const renderDetailsTab = () => (
     <div>
-      <h5>Application Name:</h5>
-      <p>{activeApplication.name}</p>
-      <h5>Description:</h5>
-      <p>{activeApplication.description}</p>
-      <h5>Owner:</h5>
-      <p>{activeApplication.owner}</p>
-      <h5>Date Created:</h5>
-      <p>{activeApplication.date_created}</p>
+      <h5>User Name:</h5>
+      <p>{activeUser.name}</p>
+      <h5>Email:</h5>
+      <p>{activeUser.email}</p>
+      <h5>Role:</h5>
+      <p>{activeUser.role}</p>
     </div>
   );
 
   const renderPropertiesTab = () => (
     <div>
       <h5>Properties:</h5>
-      {applicationUsers.length > 0 ? (
-        <ul>
-          {applicationUsers.map((user) => (
-            <li key={user.id}>
-              {user.name} - {user.email} ({user.role})
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No properties available for this application.</p>
-      )}
+      <p>Additional user-specific properties can be displayed here.</p>
     </div>
   );
 
   const renderSettingsTab = () => (
     <div>
       <h5>Settings:</h5>
-      <p>Settings content goes here...</p>
+      <p>Additional user-specific settings can be displayed here.</p>
     </div>
   );
 
