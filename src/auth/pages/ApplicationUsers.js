@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
-import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { activeApplication, applicationUsers } = useApplication();
+  const { activeApplication, applicationUsers, setActiveUser } = useApplication();
+  const navigate = useNavigate();
   const [users, setUsers] = useState(applicationUsers || []);
 
   useEffect(() => {
@@ -43,7 +44,18 @@ const ApplicationUsers = () => {
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id}>
-                    <td>{user.name}</td>
+                    <td>
+                      <a 
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveUser(user);
+                          navigate('/application/user-details');
+                        }}
+                      >
+                        {user.name}
+                      </a>
+                    </td>
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                   </tr>

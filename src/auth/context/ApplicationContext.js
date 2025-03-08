@@ -70,9 +70,12 @@ export const ApplicationProvider = ({ children }) => {
 
   // Memoized value to avoid unnecessary re-renders
   const [activeApplication, setActiveApplication] = useState(null);
+  const [activeUser, setActiveUser] = useState(null);
   const [applicationProperties, setApplicationProperties] = useState([]);
   const [applicationSecrets, setApplicationSecrets] = useState([]);
   const [applicationSettings, setApplicationSettings] = useState([]);
+  const [userProperties, setUserProperties] = useState([]);
+  const [userSettingOverrides, setUserSettingOverrides] = useState([]);
   const [applicationUsers, setApplicationUsers] = useState([]);
 
   // Update mock data when active application changes
@@ -106,11 +109,31 @@ export const ApplicationProvider = ({ children }) => {
     }
   }, [activeApplication]);
 
+  // Update mock data when active user changes
+  useEffect(() => {
+    if (activeUser) {
+      setUserProperties([
+        { id: 1, name: "Theme", value: "Dark" },
+        { id: 2, name: "Language", value: "English" },
+        { id: 3, name: "Notifications", value: "Enabled" },
+      ]);
+      setUserSettingOverrides([
+        { id: 1, name: "Max Login Attempts", value: "5" },
+        { id: 2, name: "Session Timeout", value: "30 minutes" },
+      ]);
+    } else {
+      setUserProperties([]);
+      setUserSettingOverrides([]);
+    }
+  }, [activeUser]);
+
   const value = useMemo(
     () => ({
       applications,
       activeApplication,
       setActiveApplication,
+      activeUser,
+      setActiveUser,
       addApplication,
       updateApplication,
       deleteApplication,
@@ -122,6 +145,7 @@ export const ApplicationProvider = ({ children }) => {
     [
       applications,
       activeApplication,
+      activeUser,
       applicationProperties,
       applicationSecrets,
       applicationSettings,
