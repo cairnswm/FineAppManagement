@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Table } from 'react-bootstrap';
-import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUsers = () => {
-  const { activeApplication, applicationUsers } = useApplication();
+  const { activeApplication, applicationUsers, setActiveUser } = useApplication();
+  const navigate = useNavigate();
   const [users, setUsers] = useState(applicationUsers || []);
 
   useEffect(() => {

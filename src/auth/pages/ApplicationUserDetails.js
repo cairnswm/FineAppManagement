@@ -35,14 +35,26 @@ const ApplicationUserDetails = () => {
   const renderPropertiesTab = () => (
     <div>
       <h5>Properties:</h5>
-      <p>Additional user-specific properties can be displayed here.</p>
+      <ul>
+        {activeUser.properties.map((property) => (
+          <li key={property.id}>
+            <strong>{property.name}:</strong> {property.value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 
   const renderSettingsTab = () => (
     <div>
-      <h5>Settings:</h5>
-      <p>Additional user-specific settings can be displayed here.</p>
+      <h5>Settings Overrides:</h5>
+      <ul>
+        {activeUser.settingOverrides.map((setting) => (
+          <li key={setting.id}>
+            <strong>{setting.name}:</strong> {setting.value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 
