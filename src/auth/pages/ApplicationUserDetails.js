@@ -36,7 +36,7 @@ const ApplicationUserDetails = () => {
     <div>
       <h5>Properties:</h5>
       <ul>
-        {activeUser.properties.map((property) => (
+        {userProperties.map((property) => (
           <li key={property.id}>
             <strong>{property.name}:</strong> {property.value}
           </li>
@@ -49,7 +49,7 @@ const ApplicationUserDetails = () => {
     <div>
       <h5>Settings Overrides:</h5>
       <ul>
-        {activeUser.settingOverrides.map((setting) => (
+        {userSettingOverrides.map((setting) => (
           <li key={setting.id}>
             <strong>{setting.name}:</strong> {setting.value}
           </li>
