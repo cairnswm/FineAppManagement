@@ -70,6 +70,7 @@ export const ApplicationProvider = ({ children }) => {
 
   // Memoized value to avoid unnecessary re-renders
   const [activeApplication, setActiveApplication] = useState(null);
+  const [activeUser, setActiveUser] = useState(null);
   const [applicationProperties, setApplicationProperties] = useState([]);
   const [applicationSecrets, setApplicationSecrets] = useState([]);
   const [applicationSettings, setApplicationSettings] = useState([]);
@@ -111,6 +112,8 @@ export const ApplicationProvider = ({ children }) => {
       applications,
       activeApplication,
       setActiveApplication,
+      activeUser,
+      setActiveUser,
       addApplication,
       updateApplication,
       deleteApplication,
@@ -122,6 +125,7 @@ export const ApplicationProvider = ({ children }) => {
     [
       applications,
       activeApplication,
+      activeUser,
       applicationProperties,
       applicationSecrets,
       applicationSettings,

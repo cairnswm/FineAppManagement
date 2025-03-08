@@ -43,7 +43,17 @@ const ApplicationUsers = () => {
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id}>
-                    <td>{user.name}</td>
+                    <td>
+                      <a 
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveUser(user);
+                        }}
+                      >
+                        {user.name}
+                      </a>
+                    </td>
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                   </tr>

@@ -142,6 +142,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/application/user-details"
+          element={
+            <ProtectedRoute>
+              <ApplicationUserDetails />
+            </ProtectedRoute>
+          }
+        />
         </Routes>
       </div>
     </div>
