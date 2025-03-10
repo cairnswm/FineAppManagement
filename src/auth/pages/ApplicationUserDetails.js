@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Card, Tabs, Tab } from 'react-bootstrap';
+import { Container, Card, Tabs, Tab, Form } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUserDetails = () => {
