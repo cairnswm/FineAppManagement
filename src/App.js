@@ -18,8 +18,6 @@ import AdminRoute from './auth/components/AdminRoute';
 import ApplicationUserDetails from './auth/pages/ApplicationUserDetails';
 import ApplicationDetails from './auth/pages/ApplicationDetails';
 import ApplicationProperties from './auth/pages/ApplicationProperties';
-import ApplicationUserProperties from './auth/pages/ApplicationUserProperties';
-import ApplicationUserSettings from './auth/pages/ApplicationUserSettings';
 import ApplicationSecrets from './auth/pages/ApplicationSecrets';
 import ApplicationSettings from './auth/pages/ApplicationSettings';
 import ApplicationUsers from './auth/pages/ApplicationUsers';
@@ -150,22 +148,6 @@ const App = () => {
           element={
             <ProtectedRoute>
               <ApplicationUserDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/application/user-properties"
-          element={
-            <ProtectedRoute>
-              <ApplicationUserProperties />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/application/user-settings"
-          element={
-            <ProtectedRoute>
-              <ApplicationUserSettings />
             </ProtectedRoute>
           }
         />

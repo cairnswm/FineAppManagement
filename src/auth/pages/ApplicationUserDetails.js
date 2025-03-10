@@ -73,19 +73,77 @@ const ApplicationUserDetails = () => {
               {renderDetailsTab()}
             </Tab>
             <Tab eventKey="properties" title="Properties">
-              {renderPropertiesTab()}
-              <div className="text-center mt-3">
-                <Link to="/application/user-properties" className="btn btn-link">
-                  Manage User Properties
-                </Link>
+              <div>
+                <h5>Properties:</h5>
+                <ul>
+                  {userProperties?.map((property) => (
+                    <li key={property.id}>
+                      <strong>{property.name}:</strong> {property.value}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-3">
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const name = e.target.elements.propertyName.value;
+                      const value = e.target.elements.propertyValue.value;
+                      if (name && value) {
+                        addUserProperty({ name, value });
+                        e.target.reset();
+                      }
+                    }}
+                  >
+                    <Form.Group className="mb-3">
+                      <Form.Label>Property Name</Form.Label>
+                      <Form.Control type="text" name="propertyName" required />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Property Value</Form.Label>
+                      <Form.Control type="text" name="propertyValue" required />
+                    </Form.Group>
+                    <Button type="submit" variant="primary">
+                      Add Property
+                    </Button>
+                  </Form>
+                </div>
               </div>
             </Tab>
             <Tab eventKey="settings" title="Settings">
-              {renderSettingsTab()}
-              <div className="text-center mt-3">
-                <Link to="/application/user-settings" className="btn btn-link">
-                  Manage User Settings
-                </Link>
+              <div>
+                <h5>Settings Overrides:</h5>
+                <ul>
+                  {userSettingOverrides?.map((setting) => (
+                    <li key={setting.id}>
+                      <strong>{setting.name}:</strong> {setting.value}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-3">
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const name = e.target.elements.settingName.value;
+                      const value = e.target.elements.settingValue.value;
+                      if (name && value) {
+                        addUserSettingOverride({ name, value });
+                        e.target.reset();
+                      }
+                    }}
+                  >
+                    <Form.Group className="mb-3">
+                      <Form.Label>Setting Name</Form.Label>
+                      <Form.Control type="text" name="settingName" required />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Setting Value</Form.Label>
+                      <Form.Control type="text" name="settingValue" required />
+                    </Form.Group>
+                    <Button type="submit" variant="primary">
+                      Add Setting
+                    </Button>
+                  </Form>
+                </div>
               </div>
             </Tab>
           </Tabs>
