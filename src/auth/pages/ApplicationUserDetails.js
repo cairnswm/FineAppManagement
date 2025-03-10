@@ -74,9 +74,19 @@ const ApplicationUserDetails = () => {
             </Tab>
             <Tab eventKey="properties" title="Properties">
               {renderPropertiesTab()}
+              <div className="text-center mt-3">
+                <a href="/application/user-properties" className="btn btn-link">
+                  Manage User Properties
+                </a>
+              </div>
             </Tab>
             <Tab eventKey="settings" title="Settings">
               {renderSettingsTab()}
+              <div className="text-center mt-3">
+                <a href="/application/user-settings" className="btn btn-link">
+                  Manage User Settings
+                </a>
+              </div>
             </Tab>
           </Tabs>
         </Card.Body>

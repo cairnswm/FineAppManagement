@@ -178,6 +178,36 @@ export const ApplicationProvider = ({ children }) => {
     ]);
   };
 
+  const updateUserProperty = (updatedProperty) => {
+    setUserProperties((prevProperties) =>
+      prevProperties.map((property) =>
+        property.id === updatedProperty.id ? updatedProperty : property
+      )
+    );
+  };
+
+  const addUserProperty = (newProperty) => {
+    setUserProperties((prevProperties) => [
+      ...prevProperties,
+      { id: prevProperties.length + 1, ...newProperty },
+    ]);
+  };
+
+  const updateUserSettingOverride = (updatedSetting) => {
+    setUserSettingOverrides((prevSettings) =>
+      prevSettings.map((setting) =>
+        setting.id === updatedSetting.id ? updatedSetting : setting
+      )
+    );
+  };
+
+  const addUserSettingOverride = (newSetting) => {
+    setUserSettingOverrides((prevSettings) => [
+      ...prevSettings,
+      { id: prevSettings.length + 1, ...newSetting },
+    ]);
+  };
+
   const value = useMemo(
     () => ({
       applications,
@@ -192,12 +222,12 @@ export const ApplicationProvider = ({ children }) => {
       applicationSecrets,
       applicationSettings,
       applicationUsers,
-      updateApplicationProperty,
-      addApplicationProperty,
-      updateApplicationSecret,
-      addApplicationSecret,
-      updateApplicationSetting,
-      addApplicationSetting,
+      userProperties,
+      userSettingOverrides,
+      updateUserProperty,
+      addUserProperty,
+      updateUserSettingOverride,
+      addUserSettingOverride,
     }),
     [
       applications,
@@ -207,6 +237,8 @@ export const ApplicationProvider = ({ children }) => {
       applicationSecrets,
       applicationSettings,
       applicationUsers,
+      userProperties,
+      userSettingOverrides,
     ]
   );
 
