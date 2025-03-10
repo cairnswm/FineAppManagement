@@ -161,6 +161,23 @@ export const ApplicationProvider = ({ children }) => {
     ]);
   };
 
+  // Function to update an existing application setting
+  const updateApplicationSetting = (updatedSetting) => {
+    setApplicationSettings((prevSettings) =>
+      prevSettings.map((setting) =>
+        setting.id === updatedSetting.id ? updatedSetting : setting
+      )
+    );
+  };
+
+  // Function to add a new application setting
+  const addApplicationSetting = (newSetting) => {
+    setApplicationSettings((prevSettings) => [
+      ...prevSettings,
+      { id: prevSettings.length + 1, ...newSetting },
+    ]);
+  };
+
   const value = useMemo(
     () => ({
       applications,
@@ -179,6 +196,8 @@ export const ApplicationProvider = ({ children }) => {
       addApplicationProperty,
       updateApplicationSecret,
       addApplicationSecret,
+      updateApplicationSetting,
+      addApplicationSetting,
     }),
     [
       applications,
