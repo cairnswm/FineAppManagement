@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table, Container, Card } from 'react-bootstrap';
-import { useApplication } from '../../../context/ApplicationContext';
+import { useApplication } from '../../context/ApplicationContext';
 
 const UserPropertiesTable = () => {
-  const { userProperties } = useApplication();
+  const { userProperties, updateUserProperty, addUserProperty } = useApplication();
 
   if (!userProperties || userProperties.length === 0) {
     return (
@@ -30,13 +30,32 @@ const UserPropertiesTable = () => {
               <tr>
                 <th>Property Name</th>
                 <th>Value</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {userProperties.map((property) => (
                 <tr key={property.id}>
                   <td>{property.name}</td>
-                  <td>{property.value}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={property.value}
+                      onChange={(e) =>
+                        updateUserProperty({ ...property, value: e.target.value })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() =>
+                        addUserProperty({ name: property.name, value: property.value })
+                      }
+                    >
+                      Save
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
