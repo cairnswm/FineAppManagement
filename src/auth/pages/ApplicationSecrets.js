@@ -85,47 +85,16 @@ const ApplicationSecrets = () => {
                 {secrets.map((secret) => (
                   <tr key={secret.id}>
                     <td>{secret.name}</td>
+                    <td>•••••••••</td>
                     <td>
-                      {editingId === secret.id ? (
-                        <Form.Control
-                          type="text"
-                          value={editedSecret.name || ''}
-                          onChange={(e) =>
-                            setEditedSecret({ ...editedSecret, name: e.target.value })
-                          }
-                        />
-                      ) : (
-                        secret.name
-                      )}
-                    </td>
-                    <td>
-                      {editingId === secret.id ? (
-                        <>
-                          <Button
-                            variant="success"
-                            size="sm"
-                            className="me-2"
-                            onClick={handleSaveEdit}
-                          >
-                            Save
-                          </Button>
-                          <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={handleCancelEdit}
-                          >
-                            Cancel
-                          </Button>
-                        </>
-                      ) : (
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          onClick={() => handleEdit(secret)}
-                        >
-                          Edit
-                        </Button>
-                      )}
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => handleEdit(secret)}
+                        disabled
+                      >
+                        Edit Name
+                      </Button>
                     </td>
                   </tr>
                 ))}

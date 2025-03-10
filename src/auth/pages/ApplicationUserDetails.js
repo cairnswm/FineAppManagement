@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Card, Tabs, Tab, Form, Button } from 'react-bootstrap';
+import { Container, Card, Tabs, Tab, Form, Button, Form, Button } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUserDetails = () => {
@@ -42,6 +42,31 @@ const ApplicationUserDetails = () => {
           </li>
         ))}
       </ul>
+      <div className="mt-3">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const name = e.target.elements.propertyName.value;
+            const value = e.target.elements.propertyValue.value;
+            if (name && value) {
+              addUserProperty({ name, value });
+              e.target.reset();
+            }
+          }}
+        >
+          <Form.Group className="mb-3">
+            <Form.Label>Property Name</Form.Label>
+            <Form.Control type="text" name="propertyName" required />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Property Value</Form.Label>
+            <Form.Control type="text" name="propertyValue" required />
+          </Form.Group>
+          <Button type="submit" variant="primary">
+            Add Property
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 
@@ -55,6 +80,31 @@ const ApplicationUserDetails = () => {
           </li>
         ))}
       </ul>
+      <div className="mt-3">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const name = e.target.elements.settingName.value;
+            const value = e.target.elements.settingValue.value;
+            if (name && value) {
+              addUserSettingOverride({ name, value });
+              e.target.reset();
+            }
+          }}
+        >
+          <Form.Group className="mb-3">
+            <Form.Label>Setting Name</Form.Label>
+            <Form.Control type="text" name="settingName" required />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Setting Value</Form.Label>
+            <Form.Control type="text" name="settingValue" required />
+          </Form.Group>
+          <Button type="submit" variant="primary">
+            Add Setting
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 
