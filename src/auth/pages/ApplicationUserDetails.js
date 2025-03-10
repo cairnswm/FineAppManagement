@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Card, Tabs, Tab, Form, Button } from 'react-bootstrap';
+import { Container, Card, Tabs, Tab } from 'react-bootstrap';
 import UserPropertiesTable from '../components/user/UserPropertiesTable';
 import UserSettingsTable from '../components/user/UserSettingsTable';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Container, Card, Button, Form } from 'react-bootstrap';
-import { useApplication } from '../../../context/ApplicationContext';
+import { useApplication } from '../../context/ApplicationContext';
 
 const UserSettingsTable = () => {
   const { userSettingOverrides, updateUserSettingOverride, addUserSettingOverride } = useApplication();

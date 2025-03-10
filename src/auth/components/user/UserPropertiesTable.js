@@ -50,7 +50,7 @@ const UserPropertiesTable = () => {
                     <button
                       className="btn btn-primary btn-sm"
                       onClick={() =>
-                        addUserProperty({ name: property.name, value: property.value })
+                        updateUserProperty(property)
                       }
                     >
                       Save
