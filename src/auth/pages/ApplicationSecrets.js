@@ -89,13 +89,13 @@ const ApplicationSecrets = () => {
                       {editingId === secret.id ? (
                         <Form.Control
                           type="text"
-                          value={editedSecret.value || ''}
+                          value={editedSecret.name || ''}
                           onChange={(e) =>
-                            setEditedSecret({ ...editedSecret, value: e.target.value })
+                            setEditedSecret({ ...editedSecret, name: e.target.value })
                           }
                         />
                       ) : (
-                        secret.value
+                        secret.name
                       )}
                     </td>
                     <td>
