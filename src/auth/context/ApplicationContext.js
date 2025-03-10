@@ -74,7 +74,6 @@ export const ApplicationProvider = ({ children }) => {
   const [applicationProperties, setApplicationProperties] = useState([]);
   const [applicationSecrets, setApplicationSecrets] = useState([]);
   const [applicationSettings, setApplicationSettings] = useState([]);
-  const [applicationProperties, setApplicationProperties] = useState([]);
   const [userProperties, setUserProperties] = useState([]);
   const [userSettingOverrides, setUserSettingOverrides] = useState([]);
   const [applicationUsers, setApplicationUsers] = useState([]);
