@@ -74,6 +74,7 @@ export const ApplicationProvider = ({ children }) => {
   const [applicationProperties, setApplicationProperties] = useState([]);
   const [applicationSecrets, setApplicationSecrets] = useState([]);
   const [applicationSettings, setApplicationSettings] = useState([]);
+  const [applicationProperties, setApplicationProperties] = useState([]);
   const [userProperties, setUserProperties] = useState([]);
   const [userSettingOverrides, setUserSettingOverrides] = useState([]);
   const [applicationUsers, setApplicationUsers] = useState([]);
@@ -127,6 +128,23 @@ export const ApplicationProvider = ({ children }) => {
     }
   }, [activeUser]);
 
+  // Function to update an existing application property
+  const updateApplicationProperty = (updatedProperty) => {
+    setApplicationProperties((prevProperties) =>
+      prevProperties.map((property) =>
+        property.id === updatedProperty.id ? updatedProperty : property
+      )
+    );
+  };
+
+  // Function to add a new application property
+  const addApplicationProperty = (newProperty) => {
+    setApplicationProperties((prevProperties) => [
+      ...prevProperties,
+      { id: prevProperties.length + 1, ...newProperty },
+    ]);
+  };
+
   const value = useMemo(
     () => ({
       applications,
@@ -141,6 +159,8 @@ export const ApplicationProvider = ({ children }) => {
       applicationSecrets,
       applicationSettings,
       applicationUsers,
+      updateApplicationProperty,
+      addApplicationProperty,
     }),
     [
       applications,
