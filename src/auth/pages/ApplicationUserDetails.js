@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Card, Tabs, Tab, Form, Button, Button } from 'react-bootstrap';
+import { Container, Card, Tabs, Tab, Form, Button } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationUserDetails = () => {
@@ -39,34 +39,21 @@ const ApplicationUserDetails = () => {
         {userProperties?.map((property) => (
           <li key={property.id}>
             <strong>{property.name}:</strong> {property.value}
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => {
+                const newValue = prompt(`Edit value for ${property.name}:`, property.value);
+                if (newValue !== null) {
+                  updateUserProperty({ ...property, value: newValue });
+                }
+              }}
+            >
+              Edit
+            </Button>
           </li>
         ))}
       </ul>
-      <div className="mt-3">
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const name = e.target.elements.propertyName.value;
-            const value = e.target.elements.propertyValue.value;
-            if (name && value) {
-              addUserProperty({ name, value });
-              e.target.reset();
-            }
-          }}
-        >
-          <Form.Group className="mb-3">
-            <Form.Label>Property Name</Form.Label>
-            <Form.Control type="text" name="propertyName" required />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Property Value</Form.Label>
-            <Form.Control type="text" name="propertyValue" required />
-          </Form.Group>
-          <Button type="submit" variant="primary">
-            Add Property
-          </Button>
-        </Form>
-      </div>
     </div>
   );
 
@@ -77,34 +64,21 @@ const ApplicationUserDetails = () => {
         {userSettingOverrides?.map((setting) => (
           <li key={setting.id}>
             <strong>{setting.name}:</strong> {setting.value}
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => {
+                const newValue = prompt(`Edit value for ${setting.name}:`, setting.value);
+                if (newValue !== null) {
+                  updateUserSettingOverride({ ...setting, value: newValue });
+                }
+              }}
+            >
+              Edit
+            </Button>
           </li>
         ))}
       </ul>
-      <div className="mt-3">
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const name = e.target.elements.settingName.value;
-            const value = e.target.elements.settingValue.value;
-            if (name && value) {
-              addUserSettingOverride({ name, value });
-              e.target.reset();
-            }
-          }}
-        >
-          <Form.Group className="mb-3">
-            <Form.Label>Setting Name</Form.Label>
-            <Form.Control type="text" name="settingName" required />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Setting Value</Form.Label>
-            <Form.Control type="text" name="settingValue" required />
-          </Form.Group>
-          <Button type="submit" variant="primary">
-            Add Setting
-          </Button>
-        </Form>
-      </div>
     </div>
   );
 

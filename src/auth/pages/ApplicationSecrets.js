@@ -87,14 +87,41 @@ const ApplicationSecrets = () => {
                     <td>{secret.name}</td>
                     <td>•••••••••</td>
                     <td>
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => handleEdit(secret)}
-                        disabled
-                      >
-                        Edit Name
-                      </Button>
+                      {editingId === secret.id ? (
+                        <>
+                          <Form.Control
+                            type="text"
+                            value={editedSecret.name || ''}
+                            onChange={(e) =>
+                              setEditedSecret({ ...editedSecret, name: e.target.value })
+                            }
+                            className="me-2"
+                          />
+                          <Button
+                            variant="success"
+                            size="sm"
+                            className="me-2"
+                            onClick={handleSaveEdit}
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={handleCancelEdit}
+                          >
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          onClick={() => handleEdit(secret)}
+                        >
+                          Edit Name
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 ))}
