@@ -144,6 +144,23 @@ export const ApplicationProvider = ({ children }) => {
     ]);
   };
 
+  // Function to update an existing application secret
+  const updateApplicationSecret = (updatedSecret) => {
+    setApplicationSecrets((prevSecrets) =>
+      prevSecrets.map((secret) =>
+        secret.id === updatedSecret.id ? updatedSecret : secret
+      )
+    );
+  };
+
+  // Function to add a new application secret
+  const addApplicationSecret = (newSecret) => {
+    setApplicationSecrets((prevSecrets) => [
+      ...prevSecrets,
+      { id: prevSecrets.length + 1, ...newSecret },
+    ]);
+  };
+
   const value = useMemo(
     () => ({
       applications,
@@ -160,6 +177,8 @@ export const ApplicationProvider = ({ children }) => {
       applicationUsers,
       updateApplicationProperty,
       addApplicationProperty,
+      updateApplicationSecret,
+      addApplicationSecret,
     }),
     [
       applications,

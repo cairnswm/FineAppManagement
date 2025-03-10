@@ -1,11 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Card, Table } from 'react-bootstrap';
+import { Container, Card, Table, Button, Form } from 'react-bootstrap';
 import { useApplication } from '../context/ApplicationContext';
 
 const ApplicationSecrets = () => {
-  const { activeApplication, applicationSecrets } = useApplication();
+  const { activeApplication, applicationSecrets, addApplicationSecret, updateApplicationSecret } = useApplication();
 
   const secrets = applicationSecrets || [];
+  const [editingId, setEditingId] = useState(null);
+  const [editedSecret, setEditedSecret] = useState({});
+  const [newSecret, setNewSecret] = useState({ name: '', value: '' });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleEdit = (secret) => {
+    setEditingId(secret.id);
+    setEditedSecret(secret);
+    setSuccessMessage('');
+    setErrorMessage('');
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setEditedSecret({});
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      await updateApplicationSecret(editedSecret);
+      setSuccessMessage('Secret updated successfully!');
+      setEditingId(null);
+      setEditedSecret({});
+    } catch (error) {
+      setErrorMessage('Failed to update secret. Please try again.');
+    }
+  };
+
+  const handleAddSecret = async () => {
+    if (!newSecret.name || !newSecret.value) {
+      setErrorMessage('Both name and value are required for new secrets.');
+      return;
+    }
+
+    try {
+      await addApplicationSecret(newSecret);
+      setSuccessMessage('New secret added successfully!');
+      setNewSecret({ name: '', value: '' });
+    } catch (error) {
+      setErrorMessage('Failed to add new secret. Please try again.');
+    }
+  };
 
   if (!activeApplication) {
     return (
@@ -27,19 +70,63 @@ const ApplicationSecrets = () => {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">{activeApplication.name} Secrets</h2>
+          {successMessage && <p className="text-success text-center">{successMessage}</p>}
+          {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
           {secrets.length > 0 ? (
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>Secret Name</th>
                   <th>Value</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {secrets.map((secret, index) => (
-                  <tr key={index}>
+                {secrets.map((secret) => (
+                  <tr key={secret.id}>
                     <td>{secret.name}</td>
-                    <td>{secret.value}</td>
+                    <td>
+                      {editingId === secret.id ? (
+                        <Form.Control
+                          type="text"
+                          value={editedSecret.value || ''}
+                          onChange={(e) =>
+                            setEditedSecret({ ...editedSecret, value: e.target.value })
+                          }
+                        />
+                      ) : (
+                        secret.value
+                      )}
+                    </td>
+                    <td>
+                      {editingId === secret.id ? (
+                        <>
+                          <Button
+                            variant="success"
+                            size="sm"
+                            className="me-2"
+                            onClick={handleSaveEdit}
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={handleCancelEdit}
+                          >
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          onClick={() => handleEdit(secret)}
+                        >
+                          Edit
+                        </Button>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -47,6 +134,38 @@ const ApplicationSecrets = () => {
           ) : (
             <p className="text-center">No secrets available for this application.</p>
           )}
+          <hr />
+          <h4 className="text-center mb-3">Add New Secret</h4>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleAddSecret();
+            }}
+          >
+            <Form.Group className="mb-3">
+              <Form.Label>Secret Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={newSecret.name}
+                onChange={(e) =>
+                  setNewSecret({ ...newSecret, name: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Secret Value</Form.Label>
+              <Form.Control
+                type="text"
+                value={newSecret.value}
+                onChange={(e) =>
+                  setNewSecret({ ...newSecret, value: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Button type="submit" variant="primary" className="w-100">
+              Add Secret
+            </Button>
+          </Form>
         </Card.Body>
       </Card>
     </Container>
