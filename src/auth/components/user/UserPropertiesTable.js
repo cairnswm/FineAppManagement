@@ -38,7 +38,7 @@ const UserPropertiesTable = () => {
                 <tr key={property.id}>
                   <td>{property.name}</td>
                   <td>
-                    <input
+                    <Form.Control
                       type="text"
                       value={property.value}
                       onChange={(e) =>
@@ -47,22 +47,25 @@ const UserPropertiesTable = () => {
                     />
                   </td>
                   <td>
-                    <button
-                      className="btn btn-success btn-sm me-2"
+                    <Button
+                      variant="success"
+                      size="sm"
+                      className="me-2"
                       onClick={() =>
                         updateUserProperty(property)
                       }
                     >
                       Save
-                    </button>
-                    <button
-                      className="btn btn-danger btn-sm"
+                    </Button>
+                    <Button
+                      variant="danger"
+                      size="sm"
                       onClick={() =>
                         console.log('Delete functionality to be implemented')
                       }
                     >
                       Delete
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -77,30 +80,23 @@ const UserPropertiesTable = () => {
             }}
           >
             <div className="mb-3">
-              <label htmlFor="propertyName" className="form-label">
-                Property Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="propertyName"
-                placeholder="Enter property name"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="propertyValue" className="form-label">
-                Property Value
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="propertyValue"
-                placeholder="Enter property value"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary w-100">
-              Add Property
-            </button>
+              <Form.Group className="mb-3">
+                <Form.Label>Property Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter property name"
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Property Value</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter property value"
+                />
+              </Form.Group>
+              <Button type="submit" variant="primary" className="w-100">
+                Add Property
+              </Button>
           </form>
         </Card.Body>
       </Card>
